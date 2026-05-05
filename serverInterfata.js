@@ -19,7 +19,7 @@ const server = http.createServer((req, res) => {
     if (req.url === "/api/recordings") {
         fs.readdir(RECORDINGS_DIR, (err, files) => {
             if (err) files = [];
-            const mp4s = files.filter(f => f.endsWith(".mp4")).reverse();
+            const mp4s = files.filter(f => f.endsWith(".mp4") || f.endsWith(".avi")).reverse();
             res.writeHead(200, { "Content-Type": "application/json" });
             res.end(JSON.stringify(mp4s));
         });
@@ -46,7 +46,7 @@ const server = http.createServer((req, res) => {
     }
 
     // Serve static files from public/
-    let filePath = path.join(PUBLIC_DIR, req.url === "/" ? "index.html" : req.url);
+    let filePath = path.join(PUBLIC_DIR, req.url === "/" ? "interfata.html" : req.url);
     fs.readFile(filePath, (err, data) => {
         if (err) {
             res.writeHead(404);

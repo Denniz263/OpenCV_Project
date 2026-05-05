@@ -11,8 +11,8 @@ def record_clip(duration=10, output_dir="recordings"):
         print("ERROR: Camera not found!")
         return
 
-    fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-    timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+    fourcc = cv2.VideoWriter_fourcc(*'avc1')
+    timestamp = datetime.datetime.now().strftime("%Y.%m.%d_%H:%M:%S")
     filename = f"{output_dir}/clip_{timestamp}.mp4"
 
     width  = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
